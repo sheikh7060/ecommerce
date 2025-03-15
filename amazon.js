@@ -1,5 +1,6 @@
 import {cart, addProductToCart, saveToLocalStorage} from './cart.js';
 import { products } from './data/products.js';
+import { currencyConverter } from './uitility/utility.js';
 
 let htmlforEachItem = '';
 products.forEach((productItem)=>{
@@ -23,7 +24,7 @@ products.forEach((productItem)=>{
           </div>
 
           <div class="product-price">
-            ${((productItem.priceCents)/100).toFixed(2)}
+            $${currencyConverter(productItem.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -73,14 +74,16 @@ document.querySelectorAll('.js-cart')
         })
     });
 
-
-
+    let totalItemOrder = 0;  
 function calculteTotalItem(){
-  let totalItemOrder = 0;  
     cart.forEach((item) =>{
         totalItemOrder = totalItemOrder + item.quantity;
+      
+      })
+      document.querySelector('.cart-done').innerHTML = totalItemOrder;
 
-
-    })
-    document.querySelector('.cart-done').innerHTML = totalItemOrder;
 }
+
+calculteTotalItem();
+
+

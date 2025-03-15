@@ -1,5 +1,6 @@
-import { cart,cartRemove, saveToLocalStorage } from "./cart.js";
+import { cart,saveToLocalStorage,removeItemfromCart } from "./cart.js";
 import { products } from "./data/products.js";
+import { currencyConverter } from "./uitility/utility.js";
 
 
 let htmlforEachCart = '';
@@ -22,7 +23,7 @@ cart.forEach((cartItem)=>{
 
    htmlforEachCart +=   `
 
-    <div class="cart-item-container done-html-${matchingItem.id}">
+    <div class="cart-item-container js-cart-id-${matchingItem.id}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -36,7 +37,7 @@ cart.forEach((cartItem)=>{
                   ${matchingItem.name}
                 </div>
                 <div class="product-price">
-                  ${((matchingItem.priceCents)/100).toFixed(2)}
+                  $${currencyConverter(matchingItem.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -45,7 +46,7 @@ cart.forEach((cartItem)=>{
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary js-delete" data-pro-id = ${matchingItem.id}>
+                  <span class="delete-quantity-link link-primary js-delete-button" data-product-id=${matchingItem.id}>
                     Delete
                   </span>
                 </div>
@@ -102,35 +103,32 @@ cart.forEach((cartItem)=>{
 
     });
 
+
     document.querySelector('.js-grid').innerHTML = htmlforEachCart;
+
+
+
+   function updateTheHTML(){
+    document.querySelectorAll('.js-delete-button')
+          .forEach((btn) =>{
+            btn.addEventListener('click',()=>{
+            const productIdwewanttodelete = btn.dataset.productId;
+            removeItemfromCart(productIdwewanttodelete);  
+            const ok = document.querySelector(`.js-cart-id-${productIdwewanttodelete}`);
+            ok.remove();
+            saveToLocalStorage();
+
+            })
+
+          })
+
+   };
+
+   updateTheHTML();
 
 
  
 
 
 
-    function updatetheHtml(){
-        document.querySelectorAll('.js-delete')
-
-        .forEach((deletebtn) =>{
-
-            deletebtn.addEventListener('click',()=>{
-
-                const deleteId = deletebtn.dataset.proId;
-                cartRemove(deleteId);
-                const container = document.querySelector(`.done-html-${deleteId}`);
-                container.remove();
-                saveToLocalStorage();
-
-                });
-
-                
-
-                
-        
-
-            });
-    }
-
-    updatetheHtml();
-
+    

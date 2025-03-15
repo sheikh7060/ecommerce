@@ -58,22 +58,16 @@ export function saveToLocalStorage(){
 }
 
 
-export function cartRemove(deleteId){
+export function removeItemfromCart(productIdwewanttodelete){
 
     let newCart = [];
-
     cart.forEach((cartItem) =>{
-
-        if(cartItem.itemId !== deleteId){
-
-            newCart.push(cartItem)
-
-
+        if(cartItem.itemId !== productIdwewanttodelete){
+            newCart.push(cartItem);
         }
-
+        
     })
 
     cart = newCart;
 
-    
 }
