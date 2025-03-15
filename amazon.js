@@ -54,7 +54,7 @@ products.forEach((productItem)=>{
         </div>`;
    
 });
-
+// show the product web Page using dom
 document.querySelector('.js-item-grid').innerHTML = htmlforEachItem;
 
 
