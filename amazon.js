@@ -48,7 +48,7 @@ products.forEach((productItem)=>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-cart" data-product-name="${productItem.name}">
+          <button class="add-to-cart-button button-primary js-cart" data-product-id="${productItem.id}">
             Add to Cart
           </button>
         </div>`;
@@ -61,8 +61,8 @@ document.querySelector('.js-item-grid').innerHTML = htmlforEachItem;
 document.querySelectorAll('.js-cart')
     .forEach((cartItem)=>{
         cartItem.addEventListener('click',()=>{
-            let itemName = cartItem.dataset.productName;
-            addProductToCart(itemName);
+            let itemId = cartItem.dataset.productId;
+            addProductToCart(itemId);
             calculteTotalItem();
 
 
