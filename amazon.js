@@ -1,4 +1,4 @@
-import {cart, addProductToCart} from './cart.js';
+import {cart, addProductToCart, saveToLocalStorage} from './cart.js';
 import { products } from './data/products.js';
 
 let htmlforEachItem = '';
@@ -65,21 +65,22 @@ document.querySelectorAll('.js-cart')
             addProductToCart(itemId);
             calculteTotalItem();
 
+          
+
 
            
         
         })
     });
-    
+
+
 
 function calculteTotalItem(){
-    let totalItemOrder = 0;
+  let totalItemOrder = 0;  
     cart.forEach((item) =>{
         totalItemOrder = totalItemOrder + item.quantity;
 
+
     })
-
-    console.log(totalItemOrder);
-
     document.querySelector('.cart-done').innerHTML = totalItemOrder;
 }
