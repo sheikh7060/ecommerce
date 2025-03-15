@@ -1,3 +1,5 @@
+import {cart, addProductToCart} from './cart.js';
+import { products } from './data/products.js';
 
 let htmlforEachItem = '';
 products.forEach((productItem)=>{
@@ -68,36 +70,7 @@ document.querySelectorAll('.js-cart')
         
         })
     });
-
-
-
-
-
-function addProductToCart(itemName){
-    let matchingItem;
-                    cart.forEach((item)=>{
-                        if(itemName === item.itemName){
-                            matchingItem = item;
-                        }
-
-                    })
-
-                    if(matchingItem){
-                        matchingItem.quantity +=1;
-                    }else{
-                        cart.push({
-                            itemName,
-                            quantity:1
-                        })
-
-                    }
-
-                    console.log(cart);
-
-                    
-                
-};
-
+    
 
 function calculteTotalItem(){
     let totalItemOrder = 0;
