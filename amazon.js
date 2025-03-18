@@ -74,8 +74,9 @@ document.querySelectorAll('.js-cart')
         })
     });
 
-    let totalItemOrder = 0;  
 function calculteTotalItem(){
+  let totalItemOrder = 0;  
+
     cart.forEach((item) =>{
         totalItemOrder = totalItemOrder + item.quantity;
       
